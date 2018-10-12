@@ -1,13 +1,12 @@
 package com.rohan.festapp.college.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rohan.festapp.committee.model.Committee;
 import com.rohan.festapp.utils.models.BaseFields;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Where(clause = "deleted <> 1")
@@ -26,6 +25,11 @@ public class College extends BaseFields {
 
 
     private Integer postalCode;
+
+/*    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @JoinTable(name="college_to_committee", joinColumns = {@JoinColumn(name="col_id")}, inverseJoinColumns = {@JoinColumn(name = "com_id")})
+    private Set<Committee> committees;*/
 
     public Long getId() {
         return id;
@@ -65,4 +69,12 @@ public class College extends BaseFields {
     public void setPostalCode(Integer postalCode) {
         this.postalCode = postalCode;
     }
+
+/*    public Set<Committee> getCommittees() {
+        return committees;
+    }
+
+    public void setCommittees(Set<Committee> committees) {
+        this.committees = committees;
+    }*/
 }

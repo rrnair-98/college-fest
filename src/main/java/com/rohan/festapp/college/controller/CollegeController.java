@@ -30,6 +30,11 @@ public class CollegeController {
         return ResponseEntity.status(200).body(this.collegeService.filterByName(name));
     }
 
+    @GetMapping("filter/postal-code/{post}")
+    public ResponseEntity<Iterator<College>> getCollegeByPostCode(@PathVariable("post") Integer postCode){
+        return ResponseEntity.status(200).body(this.collegeService.filterByPincode(postCode));
+    }
+
 
     @GetMapping("filter/address/{address}")
     public ResponseEntity<Iterator<College>> getCollegesByAddress(@PathVariable("address") String address){
