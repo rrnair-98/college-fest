@@ -3,6 +3,7 @@ package com.rohan.festapp.event.model;
 import com.rohan.festapp.utils.models.BaseFields;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,8 +30,9 @@ public class Event extends BaseFields {
     @Column(length = 300)
     private String information;
 
-    @Column(nullable = false )
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = true )
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "YYYY-mm-ddThh:mm")
     private Date scheduledDate;
 
     public Long getId() {
@@ -79,5 +81,13 @@ public class Event extends BaseFields {
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    public Date getScheduledDate() {
+        return scheduledDate;
+    }
+
+    public void setScheduledDate(Date scheduledDate) {
+        this.scheduledDate = scheduledDate;
     }
 }

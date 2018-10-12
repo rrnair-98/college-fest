@@ -1,5 +1,6 @@
 package com.rohan.festapp;
 
+import com.rohan.festapp.utils.config.filter.CORSFilter;
 import com.rohan.festapp.utils.config.filter.TokenFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,21 +13,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 public class FestAppApplication {
 
-    @Bean
+/*    @Bean
     public FilterRegistrationBean tokenFilter(){
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new TokenFilter());
-        //registrationBean.addUrlPatterns("*/create/");
+        registrationBean.addUrlPatterns("create");
         return registrationBean;
-    }
+    }*/
+
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:8080").allowedHeaders("GET", "POST", "PUT");
-            }
-        };
+    public FilterRegistrationBean corsFilterRegistrations(){
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new CORSFilter());
+        registrationBean.setName("CORS Filter");
+        registrationBean.addUrlPatterns("/*");
+        registrationBean.setOrder(1);
+        return registrationBean;
     }
 
     public static void main(String[] args) {

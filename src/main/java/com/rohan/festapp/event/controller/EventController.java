@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.Iterator;
 
 @RestController
-@RequestMapping("api/v1/events/")
+@RequestMapping("api/v1/event/")
 public class EventController {
 
     @Autowired

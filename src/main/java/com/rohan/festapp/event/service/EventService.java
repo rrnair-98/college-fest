@@ -15,6 +15,7 @@ public class EventService {
 
 
     public Event createEvent(Event e){
+        System.out.println(e.getScheduledDate());
         return this.eventRepo.save(e);
     }
 

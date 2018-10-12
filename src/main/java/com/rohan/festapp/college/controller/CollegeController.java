@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
-
 @RequestMapping("/api/v1/college/")
 @RestController
 public class CollegeController {
